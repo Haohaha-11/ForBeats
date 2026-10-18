@@ -28,5 +28,14 @@ exports/
 *.aiff
 *.ogg
 *.zip
+*.part
+*.crdownload
+*.exe
+*.msi
+*.dmg
+*.pkg
+*.vitalbank
+*.flexpack
+*.flex2pack
 .DS_Store
 Thumbs.db

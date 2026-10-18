@@ -9,6 +9,11 @@
 - [Beat 制作 Pipeline](PIPELINE.md)：已确认的制作流程，包含 12 个步骤、阶段产物、完成标准与问题回退方式。
 - [课程与软件资料来源](docs/sources.md)：已核对范围、视频时间点、官方文档，以及课程内容与整理建议的区别。
 - [单首 Beat 项目记录模板](templates/beat-project.md)：每次创作复制一份，记录方向、音色、Loop、编排、混音和版本。
+- [音色下载、校验与归档](docs/sound-downloads.md)：七个来源的下载入口、登录步骤、格式区别和复用命令。
+- [下载验证记录](docs/download-verification.md)：实际取得的文件、完整性检查与尚待验证的步骤。
+- [音色来源记录模板](templates/sound-asset.md)：记录素材来源、插件版本、授权链接和 FL 导入结果。
+
+下载渠道按需要选用；先用已有音色写 Loop，只有明确缺少某一类声音时才补充，不要求逐个平台下载。
 
 ## 流程主线
 
@@ -31,9 +36,14 @@ ForBeats/
 ├── README.md
 ├── PIPELINE.md
 ├── docs/
-│   └── sources.md
-└── templates/
-    └── beat-project.md
+│   ├── sources.md
+│   ├── sound-downloads.md
+│   └── download-verification.md
+├── templates/
+│   ├── beat-project.md
+│   └── sound-asset.md
+└── tools/
+    └── sound_asset.py
 ```
 
 更新时间：2026-10-18。
