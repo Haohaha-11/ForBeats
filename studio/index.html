@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111816">
+  <meta name="description" content="北四环 · 140 BPM 原创 Loop 制作台。按音轨查看音色、Piano Roll 和每颗音符的位置与长度。">
+  <title>北四环 — ForBeats Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='12' fill='%23111816'/%3E%3Cpath d='M12 31V17h7v14m5-20v26m7-20v14m6-10v6' stroke='%23c7ef97' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css?v=1">
+  <script src="app.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#workspace">跳到谱面</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="ForBeats Studio 首页"><span class="brand-icon" aria-hidden="true">▥</span> FORBEATS <span>STUDIO</span></a>
+    <div class="top-status"><span class="status-dot"></span> 制作参考台 <span class="divider">/</span> LOOP 01</div>
+    <button class="quiet-button" id="helpButton">网格怎么读 <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <div class="shell">
+    <aside class="sidebar" aria-label="制作步骤">
+      <div class="project-cover" aria-hidden="true"><span>NORTH<br>4TH RING</span><div class="cover-rings"></div><small>BEI SI HUAN / 001</small></div>
+      <div class="project-heading"><div><span class="eyebrow">当前项目</span><h1>北四环<span class="project-dot">.</span></h1></div><span class="version">V1</span></div>
+      <p class="project-caption">140 BPM 原创 Loop · 先旋律，再鼓</p>
+      <div class="progress-heading"><span>制作进度</span><span id="progressLabel">0 / 6</span></div>
+      <div class="progress-track"><span id="progressFill"></span></div>
+      <nav id="trackNav" class="track-nav" aria-label="音轨"></nav>
+      <div class="sidebar-note"><span class="tiny-label">THIS SESSION</span><p>先把一个循环做顺。<br>每次只完成一层。</p><a href="guide.md" download>下载完整步骤 <span aria-hidden="true">↓</span></a></div>
+    </aside>
+
+    <main id="workspace" tabindex="-1">
+      <section class="session-header">
+        <div><div class="eyebrow">制作台 <span class="muted">/</span> <span id="stepLabel">01 · 主旋律</span></div><h2 id="trackTitle">正在载入谱面…</h2><p id="trackDescription" class="track-description"></p></div>
+        <div class="session-specs"><div><strong>140<span>BPM</span></strong><small>工程速度</small></div><div><strong>4/4</strong><small>拍号</small></div><div><strong>08<span>BARS</span></strong><small>13.71 秒</small></div></div>
+      </section>
+
+      <section class="instrument-strip" aria-label="当前音色"><div class="instrument-icon" aria-hidden="true">♫</div><div class="instrument-copy"><span class="tiny-label">选择这个音色</span><strong id="presetName"></strong><p id="instrumentHint"></p></div><button id="copyPreset" class="secondary-button">复制名称</button></section>
+
+      <section class="roll-card" aria-labelledby="rollHeading">
+        <div class="roll-toolbar"><div class="roll-heading"><span class="live-dot"></span><h3 id="rollHeading">Piano Roll</h3><span class="roll-subtitle">FL 音名</span></div><div class="toolbar-actions"><button id="imageButton" class="quiet-button">完整原图 ↗</button><button id="focusButton" class="quiet-button" aria-pressed="false">专注模式 ⛶</button></div></div>
+        <div class="roll-controls"><div class="bar-window" role="group" aria-label="小节范围"><button id="previousBars" aria-label="前一组小节">‹</button><span id="barRangeLabel">第 1–4 小节</span><button id="nextBars" aria-label="后一组小节">›</button></div><div class="control-right"><label>显示 <select id="barsVisible" aria-label="一次显示的小节数"><option value="1">1 小节</option><option value="2">2 小节</option><option value="4" selected>4 小节</option><option value="8">8 小节</option></select></label><button id="zoomOut" class="square-button" aria-label="缩小网格">−</button><span id="zoomLabel">100%</span><button id="zoomIn" class="square-button" aria-label="放大网格">＋</button></div></div>
+        <div class="roll-scroll" id="rollScroll" tabindex="0" aria-label="可横向滚动的钢琴卷帘"><svg id="pianoRoll" role="group" aria-label="音符谱面"></svg></div>
+        <div class="roll-legend"><span><i class="note-swatch"></i><span id="rollSelection">点音符查看落点</span></span><span><i class="beat-line"></i> 粗线 = 1 拍</span><strong>1 格 = ¼ 拍 · 每小节 16 格</strong></div>
+        <div class="transport"><button class="play-button" id="playButton" aria-label="开始走拍"><span id="playIcon">▶</span><span id="playText">走拍</span></button><span class="transport-position" id="transportPosition">01 <span>:</span> 01</span><span class="transport-note">全段 8 小节 · 140 BPM</span><label class="metronome-label"><input type="checkbox" id="metronome"> 节拍器声音</label><button class="quiet-button" id="restartButton" aria-label="回到第一小节">↺ 归零</button></div>
+      </section>
+
+      <div class="details-grid">
+        <section class="detail-card selected-note" aria-labelledby="noteHeading"><div class="card-heading"><h3 id="noteHeading">当前音符</h3><span class="tiny-label">NOTE INSPECTOR</span></div><div id="noteDetails" aria-live="polite"></div><div class="note-position-example" id="noteExplanation"></div></section>
+        <section class="detail-card task-card" aria-labelledby="taskHeading"><div class="card-heading"><h3 id="taskHeading">这一层怎么做</h3><span id="taskNumber" class="tiny-label">STEP 01</span></div><ol id="instructions"></ol><button id="completeButton" class="complete-button" aria-pressed="false"><span id="completeIcon">○</span><span id="completeText">这一层做好了</span><span class="completion-key">本机保存</span></button></section>
+      </div>
+
+      <section class="detail-card note-table-card"><div class="card-heading"><div><h3>逐小节落点</h3><p class="table-help">与上方谱面同步。点击音符标签，可以定位到图中。</p></div><span class="pill">起始格 → 音高 × 长度</span></div><div id="noteTable"></div></section>
+      <section class="session-notes"><label for="personalNotes">制作笔记 <span>仅保存在当前浏览器</span></label><textarea id="personalNotes" rows="2" placeholder="比如：尾音有点长；第 4 小节想再留一点空位…"></textarea><div class="save-status" id="saveStatus" aria-live="polite"></div></section>
+      <div class="step-footer"><button id="previousTrack" class="secondary-button">← 上一层</button><span id="footerStep">01 / 06</span><button id="nextTrack" class="primary-button">下一层：和声铺底 →</button></div>
+      <footer class="page-footer"><span>FORBEATS / 北四环</span><p>原创试作谱面 · 参考《保利中心》的质感方向 · 实际音色请在 FL 中试听。走拍只提供时间定位与可选节拍器。</p><span id="storageWarning" role="status"></span></footer>
+    </main>
+  </div>
+
+  <dialog id="helpDialog"><div class="dialog-header"><div><span class="eyebrow">QUICK GUIDE</span><h2>先认清一格，再放第一颗音。</h2></div><button class="square-button" data-close-dialog aria-label="关闭说明">×</button></div><div class="help-content"><div class="help-metric"><strong>1 格</strong><span>= ¼ 拍 = 十六分音符</span></div><p>在 FL Piano Roll 的磁铁菜单选择 <strong>1/4 beat</strong>。每小节重新从 1 数到 16，第 <strong>1、5、9、13</strong> 格分别是四拍的开始。</p><div class="help-grid" id="helpGrid"></div><p>例如：<strong>第 6 格 · G6 · 长 2 格</strong>，就在第 6 格左边界放 G6，占第 6、7 格，到第 8 格左边界结束。</p><p>音名采用 FL 的显示：<strong>C5 = MIDI 60</strong>。F# 表示升 F。每个音色独立一个 Channel；循环从第 1 小节开始，到第 9 小节开始。</p><p class="muted">进度和笔记保存在当前浏览器，不会跨设备同步。制作顺序：Pluck → Pad → Clap → Kick → Closed Hat → 808。</p></div></dialog>
+  <dialog id="imageDialog" class="image-dialog"><div class="dialog-header"><h2 id="imageTitle">完整图谱</h2><div><a id="downloadImage" class="secondary-button" download>下载 PNG ↓</a><button class="square-button" data-close-dialog aria-label="关闭原图">×</button></div></div><p class="muted image-hint">原图可横向滚动查看；上半部分为第 1–4 小节，下半部分为第 5–8 小节。</p><div class="image-scroll"><img id="fullImage" alt="当前音轨的完整八小节 Piano Roll 图"></div></dialog>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
